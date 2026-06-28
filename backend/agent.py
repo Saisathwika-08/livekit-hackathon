@@ -19,6 +19,15 @@ async def notify_server(endpoint: str, data: dict):
         except:
             pass
 
+async def get_call_id(room_name: str) -> int:
+    async with aiohttp.ClientSession() as session:
+        try:
+            resp = await session.get(f"{SERVER_URL}/call-state/{room_name}")
+            data = await resp.json()
+            return data.get("call_id", 1)
+        except:
+            return 1
+
 class AppointmentAgent(Agent):
     def __init__(self, room_name: str, call_id: int):
         super().__init__(
@@ -177,6 +186,7 @@ async def entrypoint(ctx: agents.JobContext):
         agent=agent,
         room_input_options=RoomInputOptions(),
     )
+
     @session.on("conversation_item_added")
     def on_item_added(item):
         try:
@@ -199,7 +209,14 @@ async def entrypoint(ctx: agents.JobContext):
         "book an appointment. Could I start with your full name please?"
     )
 
-    await ctx.wait_for_disconnect()
+    # Keep running until room disconnects
+    disconnect_event = asyncio.Event()
+
+    @ctx.room.on("disconnected")
+    def on_disconnected():
+        disconnect_event.set()
+
+    await disconnect_event.wait()
 
     summary = f"Call ended. Room: {room_name}. Appointment details: {agent.collected}"
 
