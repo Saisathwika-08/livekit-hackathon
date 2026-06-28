@@ -1,0 +1,14 @@
+livekit
+livekit-api
+livekit-agents>=0.8.0
+livekit-plugins-openai
+livekit-plugins-deepgram
+livekit-plugins-silero
+fastapi
+uvicorn
+python-dotenv
+twilio
+openai
+aiohttp
+websockets
+aiosqlite

@@ -1,0 +1,41 @@
+in-process auto-reload has been removed from the Python CLI; use `lk agent dev` for hot-reload
+2026-06-28 12:40:29,450 - [36mDEBUG[0m asyncio - Using proactor: IocpProactor [90m[0m
+2026-06-28 12:40:29,456 - [32mINFO[0m livekit.agents - starting worker [90m{"version": "1.6.4", "rtc-version": "1.1.12"}[0m
+2026-06-28 12:40:29,457 - [32mINFO[0m livekit.agents - plugin registered [90m{"plugin": "livekit.plugins.openai", "version": "1.6.4"}[0m
+2026-06-28 12:40:29,457 - [32mINFO[0m livekit.agents - plugin registered [90m{"plugin": "livekit.plugins.groq", "version": "1.6.4"}[0m
+2026-06-28 12:40:29,457 - [32mINFO[0m livekit.agents - plugin registered [90m{"plugin": "livekit.plugins.cartesia", "version": "1.6.4"}[0m
+2026-06-28 12:40:29,477 - [32mINFO[0m livekit.agents - HTTP server listening on :63067 [90m[0m
+2026-06-28 12:40:29,618 - [32mINFO[0m livekit.agents - registered worker [90m{"agent_name": "", "deployment": "", "id": "AW_uWfFt8LKZJkq", "url": "wss://attackcapital-hackathon-jgimsvh5.livekit.cloud", "region": "India West", "protocol": 17}[0m
+2026-06-28 12:40:41,890 - [32mINFO[0m livekit.agents - received job request [90m{"job_id": "AJ_emk3X7RvnX6a", "dispatch_id": "AD_6NGdxkdZbCHX", "room": "room-ba84f7c2", "room_id": "RM_3f4cJtfQ8JZr", "agent_name": "", "resuming": false, "enable_recording": false}[0m
+2026-06-28 12:40:41,912 - [36mDEBUG[0m livekit.agents - received assignment [90m{"agent_name": "", "room_id": "RM_3f4cJtfQ8JZr", "room": "room-ba84f7c2", "job_id": "AJ_emk3X7RvnX6a", "dispatch_id": "AD_6NGdxkdZbCHX", "enable_recording": false}[0m
+2026-06-28 12:40:41,913 - [33mWARNING[0m livekit.agents - no warmed process available for job, waiting for one to be created [90m{"job_id": "AJ_emk3X7RvnX6a"}[0m
+2026-06-28 12:40:41,989 - [32mINFO[0m livekit.agents - initializing job runner [90m{"tid": 30996}[0m
+2026-06-28 12:40:41,991 - [36mDEBUG[0m asyncio - Using proactor: IocpProactor [90m[0m
+2026-06-28 12:40:41,992 - [32mINFO[0m livekit.agents - job runner initialized [90m{"tid": 30996, "elapsed_time": 0.0}[0m
+2026-06-28 12:40:47,919 - [31mERROR[0m livekit.agents - unhandled exception while running the job task [90m[0m
+Traceback (most recent call last):
+  File "C:\Users\SAI SATHWIKA DASU\AppData\Roaming\Python\Python313\site-packages\opentelemetry\util\_decorator.py", line 71, in async_wrapper
+    return await func(*args, **kwargs)  # type: ignore
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\SAI SATHWIKA DASU\AppData\Roaming\Python\Python313\site-packages\livekit\agents\ipc\job_proc_lazy_main.py", line 329, in _traceable_entrypoint
+    await self._job_entrypoint_fnc(job_ctx)
+  File "C:\Users\SAI SATHWIKA DASU\OneDrive\Attachments\live-kit hackathon\livekit-hackathon\backend\agent.py", line 165, in entrypoint
+    session = AgentSession(
+        stt=STT(),
+        llm=LLM(model="llama3-8b-8192"),
+        tts=TTS(),
+        agent=agent,)
+  File "C:\Users\SAI SATHWIKA DASU\AppData\Roaming\Python\Python313\site-packages\livekit\agents\utils\deprecation.py", line 47, in wrapper
+    bound = signature.bind_partial(*args, **kwargs)
+  File "C:\Python313\Lib\inspect.py", line 3302, in bind_partial
+    return self._bind(args, kwargs, partial=True)
+           ~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Python313\Lib\inspect.py", line 3284, in _bind
+    raise TypeError(
+        'got an unexpected keyword argument {arg!r}'.format(
+            arg=next(iter(kwargs))))
+TypeError: got an unexpected keyword argument 'agent'
+2026-06-28 12:40:47,935 - [36mDEBUG[0m livekit.agents - shutting down job task [90m{"reason": "job crashed", "user_initiated": false}[0m
+2026-06-28 12:40:47,938 - [36mDEBUG[0m livekit.agents - job exiting [90m{"reason": "job crashed", "tid": 30996, "job_id": "AJ_emk3X7RvnX6a", "room": "room-ba84f7c2"}[0m
+2026-06-28 12:40:47,989 - [36mDEBUG[0m livekit.agents - http_session(): closing the httpclient ctx [90m[0m
+2026-06-28 12:40:47,989 - [36mDEBUG[0m livekit.agents - http_session(): creating a new httpclient ctx [90m[0m
